@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesetti Ophir Earnest | Scholar &amp; Competitive Gamer Portfolio</title>
+  <meta name="description" content="Portfolio of Sesetti Ophir Earnest — Electronics & Computer Science Scholar, Full-Stack Coder, and Competitive & Console Gamer." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#07070c',
+            surface: '#0d0e17',
+            surfaceLight: '#131524',
+            cyanGlow: '#00f0ff',
+            crimsonGlow: '#ff0055',
+            violetGlow: '#a855f7',
+          },
+          fontFamily: {
+            heading: ['Orbitron', 'sans-serif'],
+            subheading: ['Rajdhani', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Font Awesome 6 CDN for iconic tech & gaming badges -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-obsidian text-slate-100 cyber-grid-bg relative antialiased selection:bg-cyan-500/30 selection:text-cyan-300">
+
+  <!-- Interactive Cybernetic Particle Canvas Background -->
+  <canvas id="cyberCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Ambient Glow Background Blobs -->
+  <div class="fixed top-12 left-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-20 right-1/4 w-96 h-96 bg-pink-600/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+  <!-- =================================================================
+       STICKY GLASSMORPHIC NAVIGATION BAR
+       ================================================================= -->
+  <header id="mainNav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 sm:px-8 border-b border-white/5 backdrop-blur-md bg-obsidian/80">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Logo / Tactical Monogram -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="relative w-10 h-10 flex items-center justify-center bg-surfaceLight border border-cyan-500/40 rounded-lg group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] transition-all">
+          <span class="font-heading font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-pink-500 text-lg">SOE</span>
+          <span class="absolute -bottom-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full pulse-emerald"></span>
+        </div>
+        <div class="hidden sm:block">
+          <div class="font-heading font-bold text-sm tracking-wider text-white group-hover:text-cyan-400 transition-colors">SESETTI OPHIR EARNEST</div>
+          <div class="font-mono text-[10px] text-gray-400 tracking-widest flex items-center gap-1.5">
+            <span class="text-cyan-400">SCHOLAR</span> <span class="text-pink-500">&bull;</span> <span class="text-pink-400">TACTICIAN</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 font-subheading text-sm font-semibold tracking-wider text-gray-300">
+        <a href="#about" class="hover:text-cyan-400 transition-colors py-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-microchip text-xs text-cyan-400"></i> Mindset
+        </a>
+        <a href="#academics" class="hover:text-cyan-400 transition-colors py-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-xs text-cyan-400"></i> Academics &amp; Tech
+        </a>
+        <a href="#gaming" class="hover:text-pink-400 transition-colors py-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-gamepad text-xs text-pink-400"></i> Gaming Arsenal
+        </a>
+        <a href="#projects" class="hover:text-cyan-400 transition-colors py-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-code text-xs text-cyan-400"></i> Projects
+        </a>
+        <a href="#contact" class="hover:text-pink-400 transition-colors py-1 flex items-center gap-1.5">
+          <i class="fa-solid fa-satellite-dish text-xs text-pink-400"></i> Contact
+        </a>
+      </nav>
+
+      <!-- Right Utility Actions: SFX Toggle & Direct Email CTA -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Audio Synth Toggle Button -->
+        <button id="sfxToggle" title="Toggle Procedural Cyber SFX" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono rounded-lg border border-white/10 text-gray-400 hover:text-cyan-400 hover:border-cyan-500/40 transition-all bg-white/5">
+          <i id="sfxIcon" class="fa-solid fa-volume-high text-xs"></i>
+          <span id="sfxLabel">SFX: OFF</span>
+        </button>
+
+        <!-- Fast Contact CTA -->
+        <a href="#contact" class="hidden lg:inline-flex items-center gap-2 px-4 py-2 text-xs font-subheading font-bold uppercase tracking-wider rounded-lg btn-tactical-outline">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-emerald"></span>
+          <span>Tactical Link</span>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button id="mobileMenuToggle" class="md:hidden p-2 text-gray-300 hover:text-cyan-400 rounded-lg border border-white/10 bg-white/5" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden mt-3 pt-3 border-t border-white/10 space-y-2 font-subheading text-sm font-semibold">
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-cyan-500/10 hover:text-cyan-400 transition-all">About / Hybrid Mindset</a>
+      <a href="#academics" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-cyan-500/10 hover:text-cyan-400 transition-all">Academic &amp; Tech Arsenal</a>
+      <a href="#gaming" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-pink-500/10 hover:text-pink-400 transition-all">Gaming &amp; Esports Portfolio</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-cyan-500/10 hover:text-cyan-400 transition-all">Technical Projects</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg hover:bg-pink-500/10 hover:text-pink-400 transition-all">Contact Terminal</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="relative z-10 pt-24 sm:pt-32">
+
+    <!-- =================================================================
+         HERO SECTION (PLAYER & SCHOLAR BANNER)
+         ================================================================= -->
+    <section id="hero" class="relative max-w-7xl mx-auto px-4 sm:px-8 py-12 lg:py-20">
+      
+      <!-- Dual-Track Perspective Filter Bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-4 border-b border-white/10">
+        <div class="flex items-center gap-2 text-xs font-mono tracking-widest text-gray-400">
+          <span class="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></span>
+          <span>SYSTEM MATRIX:</span>
+          <span id="activeModePill" class="font-bold text-white"><span class="text-cyan-400">SCHOLAR</span> &amp; <span class="text-pink-500">GAMER DUAL MATRIX</span></span>
+        </div>
+        
+        <!-- Interactive Track Filter Buttons -->
+        <div class="flex items-center p-1 bg-surfaceLight/80 border border-white/10 rounded-xl backdrop-blur-md">
+          <button data-mode="all" class="track-filter-btn active-all px-3.5 py-1.5 text-xs font-mono rounded-lg transition-all font-semibold flex items-center gap-1.5">
+            <i class="fa-solid fa-cubes text-[11px]"></i> Hybrid / All
+          </button>
+          <button data-mode="scholar" class="track-filter-btn px-3.5 py-1.5 text-xs font-mono rounded-lg text-gray-400 hover:text-cyan-400 transition-all font-semibold flex items-center gap-1.5">
+            <i class="fa-solid fa-terminal text-[11px] text-cyan-400"></i> Scholar &amp; Dev
+          </button>
+          <button data-mode="gamer" class="track-filter-btn px-3.5 py-1.5 text-xs font-mono rounded-lg text-gray-400 hover:text-pink-400 transition-all font-semibold flex items-center gap-1.5">
+            <i class="fa-solid fa-gamepad text-[11px] text-pink-400"></i> Competitive Gamer
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <!-- Triple Status Badges -->
+          <div class="flex flex-wrap items-center gap-2.5">
+            <div class="badge-cyan px-3.5 py-1 rounded-full text-xs font-mono font-bold flex items-center gap-2">
+              <i class="fa-solid fa-award text-cyan-400"></i>
+              <span>9.2 SGPA — Recent Semester</span>
+            </div>
+            <div class="badge-cyan px-3.5 py-1 rounded-full text-xs font-mono font-bold flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+              <span>Expert in Coding &amp; Decoding</span>
+            </div>
+            <div class="badge-crimson px-3.5 py-1 rounded-full text-xs font-mono font-bold flex items-center gap-2">
+              <i class="fa-solid fa-crosshairs text-pink-400"></i>
+              <span>Multiplayer Tactician &amp; AAA Story Veteran</span>
+            </div>
+          </div>
+
+          <!-- Name & Title -->
+          <div class="space-y-3">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-heading font-black tracking-tight text-white uppercase">
+              SESETTI OPHIR <br class="hidden sm:inline" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500">
+                EARNEST
+              </span>
+            </h1>
+            <p class="text-base sm:text-xl font-subheading font-bold text-gray-300 tracking-wider flex items-center flex-wrap gap-2">
+              <span class="text-cyan-400">Electronics &amp; Computer Science Scholar</span>
+              <span class="text-gray-500">|</span>
+              <span class="text-purple-300">Full-Stack Coder</span>
+              <span class="text-gray-500">|</span>
+              <span class="text-pink-400">Competitive &amp; Console Gamer</span>
+            </p>
+          </div>
+
+          <!-- Hero Tagline -->
+          <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl font-sans">
+            "Bridging rigorous analytical problem-solving, code architecture, and electronics engineering with sharp mechanical precision and high-stakes gaming instincts."
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#gaming" class="btn-glow-crimson px-6 py-3.5 rounded-xl font-subheading text-sm uppercase tracking-wider flex items-center gap-2">
+              <i class="fa-solid fa-crosshairs"></i>
+              <span>Explore Gaming Arsenal</span>
+            </a>
+            
+            <a href="#academics" class="btn-tactical-outline px-6 py-3.5 rounded-xl font-subheading text-sm uppercase tracking-wider flex items-center gap-2 hover:border-cyan-400">
+              <i class="fa-solid fa-laptop-code text-cyan-400"></i>
+              <span>View Academic &amp; Tech Profile</span>
+            </a>
+
+            <!-- Direct Email Action -->
+            <button class="copy-email-btn px-4 py-3.5 rounded-xl font-mono text-xs border border-white/10 bg-white/5 text-gray-300 hover:text-cyan-400 hover:border-cyan-500/40 transition-all flex items-center gap-2" title="Copy Direct Email Address">
+              <i class="fa-regular fa-copy"></i>
+              <span>sesettiophirearnest@gmail.com</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Interactive HUD Card -->
+        <div class="lg:col-span-4">
+          <div class="hud-box hud-box-hybrid p-6 rounded-2xl relative overflow-hidden group">
+            
+            <!-- Tactical Header -->
+            <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-emerald"></span>
+                <span class="text-xs font-mono uppercase tracking-widest text-gray-300 font-bold">OPERATOR DOSSIER</span>
+              </div>
+              <span class="text-[10px] font-mono text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">SYSTEM v2.6.4</span>
+            </div>
+
+            <!-- Profile Summary Telemetry -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between text-xs font-mono border-b border-white/5 pb-2">
+                <span class="text-gray-400">DISCIPLINE:</span>
+                <span class="text-cyan-300 font-semibold">Electronics &amp; CS (MECs)</span>
+              </div>
+              <div class="flex items-center justify-between text-xs font-mono border-b border-white/5 pb-2">
+                <span class="text-gray-400">SEMESTER SGPA:</span>
+                <span class="text-emerald-400 font-bold bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/30">9.2 OUTSTANDING</span>
+              </div>
+              <div class="flex items-center justify-between text-xs font-mono border-b border-white/5 pb-2">
+                <span class="text-gray-400">PRIMARY SPECIALTY:</span>
+                <span class="text-purple-300 font-semibold">Coding &amp; Logic Decoding</span>
+              </div>
+              <div class="flex items-center justify-between text-xs font-mono border-b border-white/5 pb-2">
+                <span class="text-gray-400">GAMING TACTICS:</span>
+                <span class="text-pink-400 font-semibold">AAA Combat &amp; IGL Shooter</span>
+              </div>
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="text-gray-400">STATUS:</span>
+                <span class="text-emerald-300 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Available for Projects
+                </span>
+              </div>
+            </div>
+
+            <!-- Interactive Quick Launch Footer -->
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+              <span class="text-[11px] font-mono text-gray-400">UPLINK ADDRESS:</span>
+              <a href="mailto:sesettiophirearnest@gmail.com" class="text-xs font-mono text-cyan-400 hover:underline flex items-center gap-1">
+                <span>Direct Mail</span> &rarr;
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Animated Stats Banner -->
+      <div id="statsBanner" class="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="hud-box hud-box-cyan p-4 rounded-xl text-center">
+          <div class="text-3xl sm:text-4xl font-heading font-black text-cyan-400" data-counter="9.2" data-is-float="true">0.0</div>
+          <div class="text-xs font-mono text-gray-300 uppercase tracking-widest mt-1">Recent Semester SGPA</div>
+          <div class="text-[11px] text-gray-500 font-mono mt-0.5">Top-Tier Academic Merit</div>
+        </div>
+
+        <div class="hud-box hud-box-crimson p-4 rounded-xl text-center">
+          <div class="text-3xl sm:text-4xl font-heading font-black text-pink-500" data-counter="15" data-suffix="+">0</div>
+          <div class="text-xs font-mono text-gray-300 uppercase tracking-widest mt-1">AAA &amp; Esports Masteries</div>
+          <div class="text-[11px] text-gray-500 font-mono mt-0.5">God of War, GTA 5, Shooters</div>
+        </div>
+
+        <div class="hud-box hud-box-cyan p-4 rounded-xl text-center">
+          <div class="text-3xl sm:text-4xl font-heading font-black text-cyan-300" data-counter="98" data-suffix="%">0</div>
+          <div class="text-xs font-mono text-gray-300 uppercase tracking-widest mt-1">Code &amp; Logic Optimization</div>
+          <div class="text-[11px] text-gray-500 font-mono mt-0.5">C, C++, Java, Python, Web</div>
+        </div>
+
+        <div class="hud-box hud-box-crimson p-4 rounded-xl text-center">
+          <div class="text-3xl sm:text-4xl font-heading font-black text-purple-400" data-counter="96" data-suffix="%">0</div>
+          <div class="text-xs font-mono text-gray-300 uppercase tracking-widest mt-1">Clutch Composure</div>
+          <div class="text-[11px] text-gray-500 font-mono mt-0.5">High-Pressure Accuracy</div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================================
+         ABOUT ME (THE HYBRID MINDSET)
+         ================================================================= -->
+    <section id="about" class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16">
+      
+      <!-- Section Tag Header -->
+      <div class="flex items-center gap-3 mb-6">
+        <span class="w-8 h-[2px] bg-cyan-400"></span>
+        <span class="font-mono text-xs text-cyan-400 uppercase tracking-widest">Section 01 // Core Philosophy</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Sleek HUD-Framed Feature Card displaying the EXACT BIO -->
+        <div class="lg:col-span-8 hud-box hud-box-hybrid p-6 sm:p-10 rounded-2xl relative">
+          
+          <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+            <h2 class="text-2xl sm:text-3xl font-heading font-bold text-white tracking-wide flex items-center gap-3">
+              <i class="fa-solid fa-brain text-cyan-400"></i>
+              <span>THE HYBRID MINDSET</span>
+            </h2>
+            <span class="text-xs font-mono text-pink-400 border border-pink-500/30 bg-pink-950/20 px-3 py-1 rounded-full uppercase tracking-wider">
+              Scholar &times; Gamer Synergy
+            </span>
+          </div>
+
+          <!-- EXACT BIO QUOTE AS REQUESTED -->
+          <blockquote class="text-gray-200 text-base sm:text-lg leading-relaxed font-sans border-l-2 border-cyan-400 pl-4 sm:pl-6 space-y-4">
+            <p>
+              "I am Sesetti Ophir Earnest, an Electronics and Computer Science student who balances a disciplined, analytical approach to academics with the sharp mechanical precision of a dedicated gamer. Achieving a 9.2 GPA in my recent semester, I specialize in coding, logic decoding, and breaking down complex concepts across software programming and hardware electronics. That same methodical mindset carries directly into my gaming life—whether I am making calm, split-second tactical calls in competitive multiplayer matches or mastering combat mechanics and immersive worlds in AAA console titles. Whether debugging complex code, preparing for high-stakes exams, or clutching a final-zone situation, I thrive under pressure and continuously refine my skills to perform at my peak."
+            </p>
+          </blockquote>
+
+          <!-- Tactical Synergy Pillars -->
+          <div class="mt-8 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4 font-mono text-xs">
+            <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+              <span class="text-cyan-400 font-bold block mb-1">01. ANALYTICAL RIGOR</span>
+              <p class="text-gray-400 text-[11px]">Deconstructing complex systems from microcontrollers to full-stack code logic.</p>
+            </div>
+            <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+              <span class="text-pink-400 font-bold block mb-1">02. MECHANICAL REFLEX</span>
+              <p class="text-gray-400 text-[11px]">Sub-frame timing, precision parries, and tight situational anticipation.</p>
+            </div>
+            <div class="p-3 bg-white/5 rounded-xl border border-white/5">
+              <span class="text-purple-400 font-bold block mb-1">03. HIGH-PRESSURE CLUTCH</span>
+              <p class="text-gray-400 text-[11px]">Calm composure during timed university tests or sudden final-zone engagements.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Side Tactical Capabilities Quick-View -->
+        <div class="lg:col-span-4 flex flex-col gap-4">
+          
+          <div class="hud-box hud-box-cyan p-6 rounded-2xl flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-cyan-400 mb-2">
+                <span>ACADEMIC VECTOR</span>
+                <span>MECs DISCIPLINE</span>
+              </div>
+              <h3 class="text-xl font-heading font-bold text-white mb-2">Electronics &amp; CS Foundation</h3>
+              <p class="text-sm text-gray-300">
+                Bridging low-level 8051 digital registers with high-level object-oriented programming in Java, C++, and Python.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+              <span class="text-gray-400">Current SGPA:</span>
+              <span class="text-cyan-300 font-bold">9.2 / 10.0</span>
+            </div>
+          </div>
+
+          <div class="hud-box hud-box-crimson p-6 rounded-2xl flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono text-pink-400 mb-2">
+                <span>COMBAT VECTOR</span>
+                <span>AAA &amp; TACTICAL SHOOTERS</span>
+              </div>
+              <h3 class="text-xl font-heading font-bold text-white mb-2">Mastery &amp; Game Sense</h3>
+              <p class="text-sm text-gray-300">
+                From precision parries in God of War and strategic heists in GTA 5, to clutching final circles with custom HUD setups.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+              <span class="text-gray-400">Focus Index:</span>
+              <span class="text-pink-400 font-bold">Peak Composure (96%)</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================================
+         ACADEMIC EXCELLENCE & TECHNICAL ARSENAL (BENTO GRID LAYOUT)
+         ================================================================= -->
+    <section id="academics" class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16 track-scholar">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-8 h-[2px] bg-cyan-400"></span>
+            <span class="font-mono text-xs text-cyan-400 uppercase tracking-widest">Section 02 // Intellectual Architecture</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-wide">
+            ACADEMIC EXCELLENCE &amp; <span class="text-cyan-400">TECH ARSENAL</span>
+          </h2>
+        </div>
+        <div class="text-xs font-mono text-gray-400">
+          [ STATUS: <span class="text-emerald-400 font-semibold">9.2 SGPA RECORDED</span> &bull; ACTIVE RESEARCH ]
+        </div>
+      </div>
+
+      <!-- Bento Grid Architecture -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Bento Card 1: Education Profile (5 Columns) -->
+        <div class="lg:col-span-5 hud-box hud-box-cyan p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="badge-cyan text-xs font-mono px-3 py-1 rounded-full uppercase">Education Profile</span>
+              <i class="fa-solid fa-graduation-cap text-cyan-400 text-xl"></i>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-heading font-bold text-white">Bachelor's / Current Studies</h3>
+              <p class="text-cyan-400 font-subheading font-bold text-lg">Electronics &amp; Computer Science (MECs)</p>
+            </div>
+
+            <!-- 9.2 SGPA Milestone Highlight Box -->
+            <div class="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/40 relative overflow-hidden">
+              <div class="absolute -right-4 -bottom-4 text-cyan-500/10 font-heading text-8xl font-black">9.2</div>
+              <div class="flex items-center gap-3 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center font-heading text-xl font-bold text-cyan-300">
+                  9.2
+                </div>
+                <div>
+                  <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">Recent Academic Milestone</div>
+                  <div class="text-sm font-sans text-gray-200">Scored an outstanding <strong>9.2 SGPA</strong> in the recent semester.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Core Academic Focus -->
+            <div class="space-y-3">
+              <h4 class="text-xs font-mono text-gray-400 uppercase tracking-widest">Core Academic Focus Areas</h4>
+              <div class="flex flex-wrap gap-2 text-xs font-mono">
+                <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-200">Software Development</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-cyan-300">Digital Electronics</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-purple-300">Microcontrollers (8051)</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-emerald-300">Algorithmic Problem-Solving</span>
+                <span class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-amber-300">Mathematical Modeling</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-400">
+            <span>Specialty Domain:</span>
+            <span class="text-cyan-400 font-semibold">Hardware-Software Synergy</span>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: Programming & Tech Stack (7 Columns) -->
+        <div class="lg:col-span-7 hud-box hud-box-cyan p-6 sm:p-8 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-6">
+            
+            <div class="flex items-center justify-between">
+              <span class="badge-cyan text-xs font-mono px-3 py-1 rounded-full uppercase">Programming &amp; Tech Stack</span>
+              <span class="text-xs font-mono text-cyan-300">SYNTAX &amp; LOGIC DOMINANCE</span>
+            </div>
+
+            <!-- Core Specialty Highlight -->
+            <div class="p-4 rounded-xl bg-purple-950/20 border border-purple-500/30">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-code-compare text-purple-400 text-lg mt-1"></i>
+                <div>
+                  <span class="text-xs font-mono text-purple-300 uppercase tracking-widest font-bold block mb-1">Core Specialty</span>
+                  <p class="text-sm text-gray-200">
+                    <strong>Expert in Coding &amp; Decoding</strong>, Syntax Debugging, Logic Building, Data Structures, and Algorithm Optimization.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated Tech Progress Bars -->
+            <div class="space-y-4">
+              
+              <!-- C / C++ -->
+              <div>
+                <div class="flex justify-between items-center text-xs font-mono mb-1.5">
+                  <span class="text-gray-200 flex items-center gap-2">
+                    <i class="fa-solid fa-c text-cyan-400"></i>
+                    <strong>C / C++</strong> (Data Structures, Memory, Logic Decoding)
+                  </span>
+                  <span class="text-cyan-400 font-bold">95%</span>
+                </div>
+                <div class="w-full bg-surfaceLight h-2 rounded-full overflow-hidden border border-white/5">
+                  <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full stat-bar-fill" style="width: 95%;"></div>
+                </div>
+              </div>
+
+              <!-- Java -->
+              <div>
+                <div class="flex justify-between items-center text-xs font-mono mb-1.5">
+                  <span class="text-gray-200 flex items-center gap-2">
+                    <i class="fa-brands fa-java text-amber-400"></i>
+                    <strong>Java</strong> (OOP, Exception Handling, AWT, Event Listeners)
+                  </span>
+                  <span class="text-cyan-400 font-bold">92%</span>
+                </div>
+                <div class="w-full bg-surfaceLight h-2 rounded-full overflow-hidden border border-white/5">
+                  <div class="bg-gradient-to-r from-amber-500 to-cyan-500 h-full rounded-full stat-bar-fill" style="width: 92%;"></div>
+                </div>
+              </div>
+
+              <!-- Python -->
+              <div>
+                <div class="flex justify-between items-center text-xs font-mono mb-1.5">
+                  <span class="text-gray-200 flex items-center gap-2">
+                    <i class="fa-brands fa-python text-yellow-400"></i>
+                    <strong>Python</strong> (Algorithmic Logic, String Parsing, Scripting)
+                  </span>
+                  <span class="text-cyan-400 font-bold">90%</span>
+                </div>
+                <div class="w-full bg-surfaceLight h-2 rounded-full overflow-hidden border border-white/5">
+                  <div class="bg-gradient-to-r from-yellow-500 to-emerald-500 h-full rounded-full stat-bar-fill" style="width: 90%;"></div>
+                </div>
+              </div>
+
+              <!-- Web Technologies -->
+              <div>
+                <div class="flex justify-between items-center text-xs font-mono mb-1.5">
+                  <span class="text-gray-200 flex items-center gap-2">
+                    <i class="fa-brands fa-html5 text-orange-400"></i>
+                    <strong>Web Technologies</strong> (HTML5, CSS3, JavaScript, Responsive Web Design, Architecture)
+                  </span>
+                  <span class="text-cyan-400 font-bold">94%</span>
+                </div>
+                <div class="w-full bg-surfaceLight h-2 rounded-full overflow-hidden border border-white/5">
+                  <div class="bg-gradient-to-r from-orange-500 via-pink-500 to-cyan-400 h-full rounded-full stat-bar-fill" style="width: 94%;"></div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Language & Technology Badges -->
+          <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-2 text-[11px] font-mono">
+            <span class="px-2.5 py-1 rounded bg-cyan-950/40 text-cyan-300 border border-cyan-500/30">C</span>
+            <span class="px-2.5 py-1 rounded bg-cyan-950/40 text-cyan-300 border border-cyan-500/30">C++</span>
+            <span class="px-2.5 py-1 rounded bg-amber-950/40 text-amber-300 border border-amber-500/30">Java OOP</span>
+            <span class="px-2.5 py-1 rounded bg-amber-950/40 text-amber-300 border border-amber-500/30">Java AWT</span>
+            <span class="px-2.5 py-1 rounded bg-yellow-950/40 text-yellow-300 border border-yellow-500/30">Python</span>
+            <span class="px-2.5 py-1 rounded bg-blue-950/40 text-blue-300 border border-blue-500/30">HTML5/CSS3</span>
+            <span class="px-2.5 py-1 rounded bg-emerald-950/40 text-emerald-300 border border-emerald-500/30">JavaScript ES6+</span>
+            <span class="px-2.5 py-1 rounded bg-purple-950/40 text-purple-300 border border-purple-500/30">8051 Assembly</span>
+          </div>
+        </div>
+
+        <!-- Bento Card 3-6: 4 Studying & Analytical Strengths Feature Cards (Full 12 cols span) -->
+        <div class="lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
+          
+          <!-- Strength 1 -->
+          <div class="hud-box hud-box-cyan p-6 rounded-2xl relative card-shine">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
+              <i class="fa-solid fa-key text-lg"></i>
+            </div>
+            <h4 class="text-lg font-heading font-bold text-white mb-2">Expert Coding &amp; Decoding</h4>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              Fast pattern recognition, logic encryption/decryption, and clean syntax debugging across nested computational structures.
+            </p>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-cyan-400 uppercase tracking-widest">
+              STRENGTH 01 // PATTERN MATCHING
+            </div>
+          </div>
+
+          <!-- Strength 2 -->
+          <div class="hud-box hud-box-cyan p-6 rounded-2xl relative card-shine">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4">
+              <i class="fa-solid fa-chart-line text-lg"></i>
+            </div>
+            <h4 class="text-lg font-heading font-bold text-white mb-2">High-Retention Study Strategy</h4>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              Structured breakdown of complex Electronics and CS theory into practical execution, resulting in an outstanding <strong>9.2 GPA</strong>.
+            </p>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-emerald-400 uppercase tracking-widest">
+              STRENGTH 02 // METHODICAL RETENTION
+            </div>
+          </div>
+
+          <!-- Strength 3 -->
+          <div class="hud-box hud-box-cyan p-6 rounded-2xl relative card-shine">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4">
+              <i class="fa-solid fa-network-wired text-lg"></i>
+            </div>
+            <h4 class="text-lg font-heading font-bold text-white mb-2">Hardware-Software Synergy</h4>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              Deep understanding of how low-level electronics and 8051 microcontrollers interact with high-level programming languages.
+            </p>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-purple-400 uppercase tracking-widest">
+              STRENGTH 03 // FULL-STACK DEPTH
+            </div>
+          </div>
+
+          <!-- Strength 4 -->
+          <div class="hud-box hud-box-cyan p-6 rounded-2xl relative card-shine">
+            <div class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/30 flex items-center justify-center text-pink-400 mb-4">
+              <i class="fa-solid fa-fire-flame-curved text-lg"></i>
+            </div>
+            <h4 class="text-lg font-heading font-bold text-white mb-2">High-Pressure Execution</h4>
+            <p class="text-sm text-gray-300 leading-relaxed">
+              Maintaining composure and accuracy during timed coding challenges, competitive environments, and university examinations.
+            </p>
+            <div class="mt-4 pt-3 border-t border-white/5 text-[10px] font-mono text-pink-400 uppercase tracking-widest">
+              STRENGTH 04 // CLUTCH FOCUS
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================================
+         GAMING PORTFOLIO: AAA CONSOLE & MULTIPLAYER ARSENAL
+         ================================================================= -->
+    <section id="gaming" class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16 track-gamer">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-8 h-[2px] bg-pink-500"></span>
+            <span class="font-mono text-xs text-pink-500 uppercase tracking-widest">Section 03 // Combat &amp; Tactical Operations</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-wide">
+            GAMING PORTFOLIO: <span class="text-pink-500">AAA CONSOLE &amp; MULTIPLAYER</span>
+          </h2>
+        </div>
+        <div class="text-xs font-mono text-gray-400">
+          [ MECHANICS: <span class="text-pink-400 font-semibold">PARRY &bull; SENSITIVITY 98% &bull; IGL CALLS</span> ]
+        </div>
+      </div>
+
+      <!-- CATEGORY A: AAA CONSOLE & ACTION-ADVENTURE MASTERPIECES -->
+      <div class="space-y-6 mb-16">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+          <h3 class="text-xl sm:text-2xl font-heading font-bold text-gray-200 flex items-center gap-3">
+            <i class="fa-solid fa-trophy text-amber-400"></i>
+            <span>AAA Console &amp; Action-Adventure Masterpieces</span>
+          </h3>
+          <span class="text-xs font-mono text-gray-400 hidden sm:inline">Click any card to inspect tactical mechanics</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Game 1: God of War -->
+          <div class="game-card hud-box hud-box-crimson p-6 rounded-2xl cursor-pointer group card-shine" data-game-id="gow">
+            <div class="flex items-center justify-between mb-3">
+              <span class="badge-crimson text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Action-Adventure</span>
+              <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">Console / PC</span>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-white group-hover:text-pink-400 transition-colors mb-2">
+              God of War (Norse Saga / Ragnarök)
+            </h4>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Mastered high-difficulty parrying, Leviathan Axe/Blades combat mechanics, boss patterns, and realm exploration.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-pink-300 mb-4">
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Sub-frame Parries</span>
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Boss Pattern Decoding</span>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-pink-400 group-hover:translate-x-1 transition-transform">
+              <span>Inspect Tactical Dossier</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Game 2: GTA V & GTA Online -->
+          <div class="game-card hud-box hud-box-crimson p-6 rounded-2xl cursor-pointer group card-shine" data-game-id="gtav">
+            <div class="flex items-center justify-between mb-3">
+              <span class="badge-crimson text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Open-World Strategy</span>
+              <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">Console / PC</span>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-white group-hover:text-pink-400 transition-colors mb-2">
+              Grand Theft Auto V &amp; GTA Online
+            </h4>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              High-level open-world strategy, precision driving/flying mechanics, and coordinated multi-stage heist execution.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-pink-300 mb-4">
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Mastermind Heists</span>
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Precision Flight / Evasion</span>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-pink-400 group-hover:translate-x-1 transition-transform">
+              <span>Inspect Tactical Dossier</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Game 3: Resident Evil Village -->
+          <div class="game-card hud-box hud-box-crimson p-6 rounded-2xl cursor-pointer group card-shine" data-game-id="re_village">
+            <div class="flex items-center justify-between mb-3">
+              <span class="badge-crimson text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Survival Horror</span>
+              <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">Console / PC</span>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-white group-hover:text-pink-400 transition-colors mb-2">
+              Resident Evil Village
+            </h4>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Survival horror resource management, puzzle decoding under pressure, and high-accuracy combat in intense environments.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-pink-300 mb-4">
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Resource Economy</span>
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Pressure Puzzle Solving</span>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-pink-400 group-hover:translate-x-1 transition-transform">
+              <span>Inspect Tactical Dossier</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Game 4: Assassin's Creed Series -->
+          <div class="game-card hud-box hud-box-crimson p-6 rounded-2xl cursor-pointer group card-shine" data-game-id="ac_series">
+            <div class="flex items-center justify-between mb-3">
+              <span class="badge-crimson text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Stealth &amp; Parkour</span>
+              <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">Console / PC</span>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-white group-hover:text-pink-400 transition-colors mb-2">
+              Assassin's Creed Series
+            </h4>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Stealth mechanics, tactical parkour navigation, environmental awareness, and melee combat mastery.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-pink-300 mb-4">
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Ghost Infiltration</span>
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">100% Synchronization</span>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-pink-400 group-hover:translate-x-1 transition-transform">
+              <span>Inspect Tactical Dossier</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Game 5: Detroit: Become Human -->
+          <div class="game-card hud-box hud-box-crimson p-6 rounded-2xl cursor-pointer group card-shine" data-game-id="detroit">
+            <div class="flex items-center justify-between mb-3">
+              <span class="badge-crimson text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Interactive Drama</span>
+              <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">PlayStation / PC</span>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-white group-hover:text-pink-400 transition-colors mb-2">
+              Detroit: Become Human
+            </h4>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Complex branching-narrative analysis, quick-time reflex mastery, and strategic decision-making.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-pink-300 mb-4">
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Branching Flowcharts</span>
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">QTE Reflex Mastery</span>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-pink-400 group-hover:translate-x-1 transition-transform">
+              <span>Inspect Tactical Dossier</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Game 6: Red Dead Redemption 2 & Marvel's Spider-Man -->
+          <div class="game-card hud-box hud-box-crimson p-6 rounded-2xl cursor-pointer group card-shine" data-game-id="rdr2_spiderman">
+            <div class="flex items-center justify-between mb-3">
+              <span class="badge-crimson text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Immersion &amp; Combat</span>
+              <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2 py-0.5 rounded border border-white/5">PlayStation / PC</span>
+            </div>
+            <h4 class="text-xl font-heading font-bold text-white group-hover:text-pink-400 transition-colors mb-2">
+              Red Dead Redemption 2 &amp; Spider-Man
+            </h4>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Open-world immersion, fast-paced aerial/combat combos, gadget weaving, and precision aiming.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-pink-300 mb-4">
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Dead Eye Precision</span>
+              <span class="bg-pink-950/40 px-2 py-0.5 rounded border border-pink-500/30">Aerial Combo Momentum</span>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-pink-400 group-hover:translate-x-1 transition-transform">
+              <span>Inspect Tactical Dossier</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <!-- Game 7: The Last of Us & Ghost of Tsushima (Spans across wide on bottom) -->
+          <div class="game-card hud-box hud-box-crimson p-6 rounded-2xl cursor-pointer group card-shine md:col-span-2 lg:col-span-3" data-game-id="tlou_ghostoftsushima">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="badge-crimson text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Tactical Stealth-Action</span>
+                <span class="badge-violet text-[11px] font-mono px-2.5 py-0.5 rounded-full uppercase">Lethal Stances</span>
+              </div>
+              <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2.5 py-0.5 rounded border border-white/5">PlayStation Masterworks</span>
+            </div>
+            <h4 class="text-xl sm:text-2xl font-heading font-bold text-white group-hover:text-pink-400 transition-colors mb-2">
+              The Last of Us &amp; Ghost of Tsushima
+            </h4>
+            <p class="text-sm text-gray-300 leading-relaxed max-w-4xl mb-4">
+              Tactical stealth-action, lethal stance-switching mechanics, brick/bottle distraction loops, and adaptive survival gameplay against lethal odds.
+            </p>
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-white/5">
+              <div class="flex flex-wrap gap-2 text-[10px] font-mono text-pink-300">
+                <span class="bg-pink-950/40 px-2.5 py-1 rounded border border-pink-500/30">Lethal+ Katana Parries</span>
+                <span class="bg-pink-950/40 px-2.5 py-1 rounded border border-pink-500/30">Grounded Mode Stealth</span>
+                <span class="bg-pink-950/40 px-2.5 py-1 rounded border border-pink-500/30">Adaptive Scavenging</span>
+              </div>
+              <div class="text-xs font-mono text-pink-400 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                <span>View Full Mastery Telemetry</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CATEGORY B: COMPETITIVE MULTIPLAYER & TACTICAL SHOOTERS -->
+      <div class="hud-box hud-box-crimson p-6 sm:p-10 rounded-2xl relative overflow-hidden">
+        
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b border-white/10 pb-6 mb-8">
+          <div>
+            <span class="badge-crimson text-xs font-mono px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block">
+              Competitive Esports &amp; Shooter Matrix
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-heading font-bold text-white">
+              Tactical Shooter Mechanics &amp; In-Game Leadership
+            </h3>
+          </div>
+          <div class="flex items-center gap-2 font-mono text-xs text-gray-300 bg-white/5 px-3 py-1.5 rounded-lg border border-white/10">
+            <span class="w-2 h-2 rounded-full bg-pink-500 pulse-emerald"></span>
+            <span>ROLE: SQUAD IGL &amp; ENTRY ANCHOR</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Exact Playstyle Bio -->
+          <div class="lg:col-span-6 space-y-4">
+            <h4 class="text-xs font-mono text-pink-400 uppercase tracking-widest flex items-center gap-2">
+              <i class="fa-solid fa-crosshairs"></i> Playstyle &amp; Mindset Dossier
+            </h4>
+            
+            <blockquote class="text-gray-200 text-sm sm:text-base leading-relaxed bg-pink-950/20 p-5 rounded-xl border border-pink-500/30">
+              "I am a competitive gamer who combines sharp mechanical precision with calm, tactical decision-making in every match. High-pressure situations bring out my best focus, allowing me to make split-second calls without panicking while fine-tuning my controls and sensitivity settings for maximum accuracy and consistency. With strong situational awareness, I read the map early to anticipate opponent movements and support my team through clear communication and smart positioning."
+            </blockquote>
+
+            <div class="flex flex-wrap gap-2 text-xs font-mono pt-2">
+              <span class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-gray-300">Fast Recoil Compensation</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-pink-300">Custom Sensitivity Grids</span>
+              <span class="px-3 py-1 bg-white/5 rounded-lg border border-white/10 text-cyan-300">Minimap Rotation Reads</span>
+            </div>
+          </div>
+
+          <!-- HUD Radar / Stat Bars -->
+          <div class="lg:col-span-6 bg-surface/80 p-6 rounded-xl border border-white/10 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-4">
+              <span class="text-xs font-mono text-gray-400 uppercase tracking-widest font-bold">TACTICAL SHOOTER ATTRIBUTES</span>
+              <span class="text-xs font-mono text-pink-400">TELEMETRY BENCHMARK</span>
+            </div>
+
+            <!-- Stat 1: Mechanical Aim & Recoil Control (95%) -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-gray-200">Mechanical Aim &amp; Recoil Control</span>
+                <span class="text-pink-400 font-bold">95%</span>
+              </div>
+              <div class="w-full bg-surfaceLight h-2.5 rounded-full overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full stat-bar-fill" style="width: 95%;"></div>
+              </div>
+            </div>
+
+            <!-- Stat 2: Map Awareness & Game Sense (94%) -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-gray-200">Map Awareness &amp; Game Sense</span>
+                <span class="text-pink-400 font-bold">94%</span>
+              </div>
+              <div class="w-full bg-surfaceLight h-2.5 rounded-full overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full stat-bar-fill" style="width: 94%;"></div>
+              </div>
+            </div>
+
+            <!-- Stat 3: Clutch Composure Under Pressure (96%) -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-gray-200">Clutch Composure Under Pressure</span>
+                <span class="text-pink-400 font-bold">96%</span>
+              </div>
+              <div class="w-full bg-surfaceLight h-2.5 rounded-full overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full stat-bar-fill" style="width: 96%;"></div>
+              </div>
+            </div>
+
+            <!-- Stat 4: Custom HUD & Sensitivity Optimization (98%) -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-gray-200">Custom HUD &amp; Sensitivity Optimization</span>
+                <span class="text-cyan-400 font-bold">98%</span>
+              </div>
+              <div class="w-full bg-surfaceLight h-2.5 rounded-full overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-cyan-400 to-pink-500 h-full rounded-full stat-bar-fill" style="width: 98%;"></div>
+              </div>
+            </div>
+
+            <!-- Stat 5: Squad Communication & Tactical IGL Calls (92%) -->
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-gray-200">Squad Communication &amp; Tactical IGL Calls</span>
+                <span class="text-pink-400 font-bold">92%</span>
+              </div>
+              <div class="w-full bg-surfaceLight h-2.5 rounded-full overflow-hidden border border-white/5">
+                <div class="bg-gradient-to-r from-pink-500 to-purple-500 h-full rounded-full stat-bar-fill" style="width: 92%;"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================================
+         CODING & TECHNICAL PROJECTS SHOWCASE
+         ================================================================= -->
+    <section id="projects" class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16 track-scholar">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-8 h-[2px] bg-cyan-400"></span>
+            <span class="font-mono text-xs text-cyan-400 uppercase tracking-widest">Section 04 // Deployed Code &amp; Systems</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-wide">
+            TECHNICAL PROJECTS &amp; <span class="text-cyan-400">SOFTWARE BUILDS</span>
+          </h2>
+        </div>
+        <div class="text-xs font-mono text-gray-400">
+          [ ARCHITECTURE: <span class="text-cyan-300 font-semibold">C++ &bull; JAVA OOP/AWT &bull; 8051 MICRO</span> ]
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Project 1: Logic Decoder & Algorithmic Problem Solver -->
+        <div class="project-card hud-box hud-box-cyan p-6 sm:p-7 rounded-2xl flex flex-col justify-between group card-shine cursor-pointer" data-project-id="logic_decoder">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="badge-cyan text-[11px] font-mono px-3 py-1 rounded-full uppercase">C++ / Python</span>
+              <span class="text-xs font-mono text-cyan-400"><i class="fa-solid fa-terminal"></i></span>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-white group-hover:text-cyan-400 transition-colors mb-3">
+              Logic Decoder &amp; Algorithmic Problem Solver
+            </h3>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Built using C++ and Python to process, encode, and decode complex data strings and logical patterns efficiently with optimized bitwise routines.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-cyan-300">
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">Bitwise Parsing</span>
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">O(log n) Optimization</span>
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">Cipher Logic</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400 group-hover:translate-x-1 transition-transform">
+            <span>Inspect System Architecture</span>
+            <i class="fa-solid fa-code"></i>
+          </div>
+        </div>
+
+        <!-- Project 2: Interactive Web & Java Application Suite -->
+        <div class="project-card hud-box hud-box-cyan p-6 sm:p-7 rounded-2xl flex flex-col justify-between group card-shine cursor-pointer" data-project-id="java_web_suite">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="badge-cyan text-[11px] font-mono px-3 py-1 rounded-full uppercase">Java / Web Suite</span>
+              <span class="text-xs font-mono text-amber-400"><i class="fa-brands fa-java"></i></span>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-white group-hover:text-cyan-400 transition-colors mb-3">
+              Interactive Web &amp; Java Application Suite
+            </h3>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Developed responsive web interfaces and modular Java programs utilizing custom event listeners, robust OOP structure, and resilient exception handling.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-cyan-300">
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">Java OOP &amp; AWT</span>
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">Event Listeners</span>
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">Web Responsive</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400 group-hover:translate-x-1 transition-transform">
+            <span>Inspect System Architecture</span>
+            <i class="fa-solid fa-code"></i>
+          </div>
+        </div>
+
+        <!-- Project 3: Electronics & Microcontroller System Models -->
+        <div class="project-card hud-box hud-box-cyan p-6 sm:p-7 rounded-2xl flex flex-col justify-between group card-shine cursor-pointer" data-project-id="electronics_microcontroller">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="badge-cyan text-[11px] font-mono px-3 py-1 rounded-full uppercase">8051 / Digital Logic</span>
+              <span class="text-xs font-mono text-purple-400"><i class="fa-solid fa-microchip"></i></span>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-white group-hover:text-cyan-400 transition-colors mb-3">
+              Electronics &amp; Microcontroller Models
+            </h3>
+            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+              Academic coursework projects bridging digital electronics architecture with structured low-level programming, timer interrupts, and logic state machines.
+            </p>
+            <div class="flex flex-wrap gap-1.5 text-[10px] font-mono text-cyan-300">
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">8051 Timers &amp; ISR</span>
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">Embedded C</span>
+              <span class="bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">Gate Matrices</span>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400 group-hover:translate-x-1 transition-transform">
+            <span>Inspect System Architecture</span>
+            <i class="fa-solid fa-code"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================================
+         CONTACT & CONNECT HUB (FOOTER TERMINAL)
+         ================================================================= -->
+    <section id="contact" class="relative max-w-7xl mx-auto px-4 sm:px-8 py-16">
+      
+      <!-- Section Header -->
+      <div class="flex items-center gap-3 mb-6">
+        <span class="w-8 h-[2px] bg-pink-500"></span>
+        <span class="font-mono text-xs text-pink-500 uppercase tracking-widest">Section 05 // Transmission Uplink</span>
+      </div>
+
+      <div class="hud-box hud-box-hybrid p-6 sm:p-12 rounded-3xl relative">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          <!-- Left Terminal Info -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Status Indicator -->
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 text-xs font-mono">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-emerald"></span>
+              <span>Available for Tech Projects, Internships &amp; Competitive Gaming Squads</span>
+            </div>
+
+            <div>
+              <h2 class="text-3xl sm:text-4xl font-heading font-black text-white uppercase tracking-tight">
+                INITIATE <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500">CONTACT</span>
+              </h2>
+              <p class="text-gray-300 text-sm sm:text-base leading-relaxed mt-2 font-sans">
+                Whether you have an inquiry regarding software engineering, electronics design, academic collaboration, or competitive multiplayer rosters, the tactical terminal is open.
+              </p>
+            </div>
+
+            <!-- Direct Email Uplink Card -->
+            <div class="bg-surface/80 p-5 rounded-2xl border border-white/10 space-y-3">
+              <div class="text-xs font-mono text-gray-400 uppercase tracking-widest">Direct Secure Transmission</div>
+              <div class="font-mono text-cyan-300 font-semibold text-sm sm:text-base break-all">
+                sesettiophirearnest@gmail.com
+              </div>
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <button class="copy-email-btn px-4 py-2 rounded-lg bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 hover:bg-cyan-500/30 text-xs font-mono font-bold flex items-center gap-2 transition-all">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Copy Email</span>
+                </button>
+                <a href="mailto:sesettiophirearnest@gmail.com" class="px-4 py-2 rounded-lg bg-pink-500/20 border border-pink-400/50 text-pink-300 hover:bg-pink-500/30 text-xs font-mono font-bold flex items-center gap-2 transition-all">
+                  <i class="fa-regular fa-paper-plane"></i>
+                  <span>Send Direct Email</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Scholar & Gamer Fast Telemetry Tags -->
+            <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-cyan-400 block font-bold mb-0.5">ACADEMICS</span>
+                <span class="text-gray-400 text-[11px]">9.2 SGPA &bull; Electronics &amp; CS</span>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-pink-400 block font-bold mb-0.5">GAMING</span>
+                <span class="text-gray-400 text-[11px]">AAA Story &bull; Tactical Shooters</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Interactive Contact Form -->
+          <div class="lg:col-span-7">
+            <form id="tacticalContactForm" class="bg-surface/90 p-6 sm:p-8 rounded-2xl border border-white/10 space-y-4">
+              
+              <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-2">
+                <span class="text-xs font-mono text-gray-400 uppercase tracking-widest font-semibold flex items-center gap-2">
+                  <i class="fa-solid fa-satellite-dish text-cyan-400"></i> TRANSMISSION PROTOCOL
+                </span>
+                <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/30">ONLINE &amp; READY</span>
+              </div>
+
+              <!-- Name & Email Inputs -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label for="formName" class="text-xs font-mono text-gray-300 uppercase">Operator / Contact Name <span class="text-pink-500">*</span></label>
+                  <input type="text" id="formName" required placeholder="e.g. Commander Sarah / Prof. Vance" class="w-full bg-obsidian/90 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 font-sans transition-all" />
+                </div>
+                <div class="space-y-1.5">
+                  <label for="formEmail" class="text-xs font-mono text-gray-300 uppercase">Email Address <span class="text-pink-500">*</span></label>
+                  <input type="email" id="formEmail" required placeholder="e.g. your.email@domain.com" class="w-full bg-obsidian/90 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 font-sans transition-all" />
+                </div>
+              </div>
+
+              <!-- Subject Select -->
+              <div class="space-y-1.5">
+                <label for="formSubject" class="text-xs font-mono text-gray-300 uppercase">Mission Domain / Inquiry Subject</label>
+                <select id="formSubject" class="w-full bg-obsidian/90 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 font-sans transition-all">
+                  <option value="Academic / Tech Inquiry">Academic &amp; Tech Inquiry (Software / Electronics / Microcontrollers)</option>
+                  <option value="Gaming & Esports Collaboration">Gaming &amp; Esports Collaboration (Multiplayer Squad / Roster)</option>
+                  <option value="Internship or Project Proposal">Internship or Project Proposal</option>
+                  <option value="General Connect">General Discussion &amp; Networking</option>
+                </select>
+              </div>
+
+              <!-- Message Body -->
+              <div class="space-y-1.5">
+                <label for="formMessage" class="text-xs font-mono text-gray-300 uppercase">Transmission Content <span class="text-pink-500">*</span></label>
+                <textarea id="formMessage" rows="4" required placeholder="Type your message, project specifications, or collaboration details here..." class="w-full bg-obsidian/90 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 font-sans transition-all"></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="contactSubmitBtn" class="w-full btn-glow-cyan py-3 rounded-xl font-subheading text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                <span>Dispatch Tactical Message</span>
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+
+              <div id="formStatusMsg" class="hidden"></div>
+
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Footer Copyright & Tactical Credits -->
+        <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400">
+          <div>
+            &copy; 2026 <strong>SESETTI OPHIR EARNEST</strong>. All rights reserved.
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-cyan-400">ELECTRONICS &amp; CS</span>
+            <span class="text-gray-600">&bull;</span>
+            <span class="text-pink-400">AAA CONSOLE &amp; ESPORTS</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =================================================================
+       INTERACTIVE INSPECT MODAL (For Games & Coding Projects)
+       ================================================================= -->
+  <div id="inspectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-obsidian/85 backdrop-blur-md">
+    <div class="hud-box hud-box-hybrid w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 sm:p-8 modal-enter relative shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+      
+      <!-- Close Button -->
+      <button id="closeModalBtn" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/10 hover:bg-pink-500/20 text-gray-300 hover:text-pink-400 flex items-center justify-center transition-colors border border-white/10" aria-label="Close Inspection Modal">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- Dynamic Content Injection Container -->
+      <div id="modalContentBody"></div>
+
+    </div>
+  </div>
+
+  <!-- =================================================================
+       FLOATING TOAST NOTIFICATION (Copy Email & System Alerts)
+       ================================================================= -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 max-w-md bg-surfaceLight/95 border border-cyan-400/50 p-4 rounded-2xl shadow-[0_0_30px_rgba(0,240,255,0.3)] backdrop-blur-xl translate-y-24 opacity-0 pointer-events-none flex items-center gap-3">
+    <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-400/40">
+      <i class="fa-solid fa-check text-sm"></i>
+    </div>
+    <div class="flex-1">
+      <div class="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold">SYSTEM TELEMETRY</div>
+      <div id="toastMessage" class="text-xs font-mono text-gray-200">Email copied to clipboard!</div>
+    </div>
+  </div>
+
+  <!-- Application Interactivity Script -->
+  <script src="app.js"></script>
+</body>
+</html>
